@@ -57,7 +57,9 @@ function timeNow() {
         hours = "0" + hours;
     if(minutes < 10)
         minutes = "0" + minutes;
-    let timeString = (seconds%2==0)? hours + ":" + minutes+':'+seonds: hours+ " " + minutes+' '+seonds;
+    if(seconds < 10)
+        seconds = "0" + seconds;
+    let timeString = hours + ":" + minutes+':'+seconds;
     return timeString;
 }
 setInterval(() => {
