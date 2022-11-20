@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Stick+No+Bills&display=swap" rel="stylesheet">
+        <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/alarm-clock_23f0.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="fav/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="fav/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="fav/favicon-16x16.png">
+        <link rel="manifest" href="fav/site.webmanifest">
+        <title>Web Clock</title>
+        </head>
+    <body id="bg">
+        <div id="clock-container">
+            <div class="change-mode">
+                <input id="button" class="auto-mode" type="submit" onclick="autoModeStart()" value="Auto" title='Dark mode: 21:00 - 7:00 Light mode: 7:00 - 21:00'/>
+                <input id="button" class="night-mode" type="submit" onclick="nightModeStart()" value='🌙' title='Dark mode'/>
+                <input id="button" class="day-mode" type="submit" onclick="dayModeStart()" value="🔅" title='Light mode'/>           
+            </div>
+            <input type="checkbox" class="change-type" id="change-type" />
+            <label for="change-type" class="change-btn"></label>
+            
+            <div id="digitalClock"></div>
+            <div id="analogClock">
+                <div class="numbers">
+                    <div class="num" style='transform: rotate(-90deg)'><p style="transform: rotate(-90deg);">12</p></div>
+                    <div class="num" style='transform: rotate(-60deg)'><p style='transform: rotate(240deg)'>1</p></div>
+                    <div class="num" style='transform: rotate(-30deg)'><p style='transform: rotate(210deg)'>2</p></div>
+                    <div class="num"><p style='transform: rotate(180deg)'>3</p></div>
+                    <div class="num" style='transform: rotate(30deg)'><p style='transform: rotate(150deg)'>4</p></div>
+                    <div class="num" style='transform: rotate(60deg)'><p style='transform: rotate(120deg)'>5</p></div>
+                    <div class="num" style='transform: rotate(90deg)'><p style='transform: rotate(90deg)'>6</p></div>
+                    <div class="num" style='transform: rotate(120deg)'><p style='transform: rotate(60deg)'>7</p></div>
+                    <div class="num" style='transform: rotate(150deg)'><p style='transform: rotate(30deg)'>8</p></div>
+                    <div class="num" style='transform: rotate(180deg)'><p>9</p></div>
+                    <div class="num" style='transform: rotate(210deg)'><p style='transform: rotate(330deg)'>10</p></div>
+                    <div class="num" style='transform: rotate(240deg)'><p style='transform: rotate(300deg)'>11</p></div>
+                </div>
+                <div id="hour-hand"></div>
+                <div id="minute-hand"></div>
+                <div id="second-hand"></div>
+            </div>
+            <div class="github">Made with ❤ by <a href='https://github.com/moxa-rumin'>@moxa-rumin</a></div>
+        </div>
+        <script src="clock.js">''</script>
+    </body>
+</html>

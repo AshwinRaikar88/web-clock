@@ -1,0 +1,270 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    background: #ccc;
+    padding: 0;
+    margin: 0;
+  }
+#bg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.night{
+    background: linear-gradient(45deg,  rgb(64, 64, 121) 50%,  rgb(56, 56, 114) 100%);
+
+    background-color: rgb(64, 64, 121);
+}
+.day{
+    background: linear-gradient(45deg,  rgb(218, 218, 218) 50%,  rgb(235, 235, 235) 100%);
+}
+.containerDay{
+    background-color: #fff;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.containerNight{
+    background-color: rgb(51, 51, 51, 0.5);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+#clock-container{
+    position:relative;
+    border-radius: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70vw;
+    height: 80vh; 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+}
+
+#digitalClock{
+    font-size: 80px;
+    font-weight: 400;
+    text-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    color: #fff;
+    font-family: 'Stick No Bills', sans-serif;
+    
+}
+#analogClock{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(45deg,  rgb(243, 243, 243) 50%,  rgb(255, 255, 255) 100%);
+    border-radius: 50%;
+    border: 10px solid rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#analogClock::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    border:rgb(0, 0, 0)solid 5px;
+
+}
+.num{
+    position:absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 190px;
+    margin: 0;
+    text-align: left;
+    transform-origin: right;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+}
+.numbers{
+    position: absolute;
+    bottom: 63%;
+    left: 97%;
+    transform: rotate(180deg);
+    transform-origin: center;
+}
+p{
+    width: min-content;
+    height: min-content;
+    transform-origin: center;
+    text-align: left;
+
+
+}
+#second-hand{
+    position: absolute;
+    left: 200px;
+    top: 20px;
+    width: 5px;
+    height: 180px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 5px 5px;
+    transform-origin: bottom;
+    box-shadow: rgb(58, 58, 58, 0.35)  -3px 0px 10px
+
+}
+#minute-hand{
+    position: absolute;
+    left: 200px;
+    top: 20px;
+    width: 5px;
+    height: 180px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px 5px;
+    transform-origin: bottom;
+    box-shadow: rgba(58, 58, 58, 0.35) -3px 0px 10px
+
+}
+#hour-hand{
+    position: absolute;
+    left: 196.5px;
+    top: 100px;
+    width: 8px;
+    height: 100px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px 5px;
+    transform-origin: bottom;
+    box-shadow: rgb(58, 58, 58, 0.35)  -3px 0px 10px
+
+}
+.change-type {
+    opacity: 0;
+    position: absolute;
+    
+  }
+.change-type ~ .change-btn::before {
+    content: "Digital";
+
+}
+.change-type:checked ~ .change-btn:before {
+    content: "Analog";
+}
+
+.change-type:checked ~ #digitalClock{
+    display: none;
+}
+.change-type:checked ~ #analogClock{
+    display: block;
+}
+.change-btn:hover{
+    filter: brightness(0.86);
+}
+.change-btn, .display-btn{
+    position: absolute;
+    top: 90%;
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    width: max-content;
+    height: max-content;
+    font-weight: 500;
+    background-color: rgba(41, 37, 37, 0.5);
+    padding: 5px 20px;
+    border-radius: 10px 10px;
+    font-family: 'Josefin Sans', sans-serif;
+    margin-right: 20px ;
+    box-shadow: rgba(43, 43, 43, 0.4) 0px 2px 8px 0px;
+}
+
+.auto-mode, .day-mode, .night-mode{
+    width: 50px;
+    height: 40px;
+    background-color: rgba(41, 37, 37, 0.5);
+    margin-right: 20px;
+    border-radius: 13px 13px;
+    padding: 0;
+    border: none;
+    font-size: 20px;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    cursor: pointer;
+    color: transparent; 
+    text-shadow: rgb(255, 255, 255) 0 0 0 ;
+    box-shadow: rgba(43, 43, 43, 0.4) 0px 2px 8px 0px;
+}
+.change-mode{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    position: absolute;
+    top:6%;
+    left:50%;
+    transform: translate(-50% ,-50%);
+}
+.day-mode{
+    font-size: 25px;
+}
+
+.night-mode:hover{
+    filter: brightness(0.86);
+}
+.auto-mode:hover{
+    filter: brightness(0.86);
+}
+.day-mode:hover{
+    filter: brightness(0.86);
+}
+
+.github{
+    color:white;
+    font-family: 'Josefin Sans', sans-serif;
+    position:absolute;
+    top: 105%;
+    left:50%;
+    width: max-content;
+    transform: translate(-50%, -50%);
+}
+a{
+    color: rgb(218, 124, 124)
+}
+@media(max-width: 1024px) {
+    .change-mode{
+        top: 10%
+    }
+    #clock-container{
+        width: 90vw;
+        height: 60vh;
+    }
+    #analogClock{
+        width: 200px;
+        height: 200px;
+    }
+    #second-hand{
+        left: 100px;
+        top: 10px;
+        width: 5px;
+        height: 90px;
+    }
+    #minute-hand{
+        left: 100px;
+        top: 10px;
+        width: 5px;
+        height: 90px;
+    }
+    #hour-hand{
+        left: 100px;
+        top: 50px;
+        width: 8px;
+        height: 50px;
+    }
+    .num{
+        bottom: 50%;
+        left: 95%;
+        width: 93px;
+        font-size: 20px;
+    }
+    .numbers{
+        bottom: 66%;
+        left: 95.5%;
+    }
+}
