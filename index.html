@@ -11,12 +11,17 @@
         <link rel="icon" type="image/png" sizes="32x32" href="fav/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="fav/favicon-16x16.png">
         <link rel="manifest" href="fav/site.webmanifest">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
         <title>Web Clock</title>
         </head>
     <body id="bg">
         <div id="clock-container">
             <div class="change-mode">
-                <input id="button" class="auto-mode" type="submit" onclick="autoModeStart()" value="Auto" title='Dark mode: 21:00 - 7:00 Light mode: 7:00 - 21:00'/>
+                <!-- <input id="button" class="auto-mode" type="submit" onclick="autoModeStart()" value="Auto" title='Dark mode: 21:00 - 7:00 Light mode: 7:00 - 21:00'/> -->
+                <button id="auto-mode-btn" class="auto-mode" onclick="autoModeStart()" title="Dark mode: 21:00 - 7:00 Light mode: 7:00 - 21:00">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+
                 <input id="button" class="night-mode" type="submit" onclick="nightModeStart()" value='🌙' title='Dark mode'/>
                 <input id="button" class="day-mode" type="submit" onclick="dayModeStart()" value="🔅" title='Light mode'/>           
             </div>
@@ -24,6 +29,24 @@
             <label for="change-type" class="change-btn"></label>
             
             <div id="digitalClock"></div>
+            
+            <div id="current-session-timer">
+            <!-- Session duration will appear here -->
+            </div>
+
+            <div id="log-controls">
+                <button id="clockInBtn" onclick="clockIn()"><i class="fas fa-clock"></i>Clock In</button>
+                <button id="clockOutBtn" onclick="clockOut()"><i class="fas fa-clock"></i>Clock Out</button>                
+            </div>
+
+            <ul id="log-list"></ul>
+
+            <div id="log-controls">
+                <button onclick="downloadLog()"><i class="fas fa-save"></i>Save</button>
+                <button onclick="clearLog()"><i class="fas fa-eraser"></i>Clear</button>
+            </div>
+            
+
             <div id="analogClock">
                 <div class="numbers">
                     <div class="num" style='transform: rotate(-90deg)'><p style="transform: rotate(-90deg);">12</p></div>
@@ -43,7 +66,7 @@
                 <div id="minute-hand"></div>
                 <div id="second-hand"></div>
             </div>
-            <div class="github">Made with ❤ by <a href='https://github.com/mkh1n'>@mkh1n</a></div>
+            <!-- <div class="github">Made with ❤ by <a href='https://github.com/mkh1n'>@mkh1n</a></div> -->
         </div>
         <script src="clock.js">''</script>
     </body>

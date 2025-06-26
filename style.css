@@ -38,14 +38,19 @@ html, body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
 }
 
-#digitalClock{
+#digitalClock {
     font-size: 80px;
     font-weight: 400;
     text-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     color: #fff;
     font-family: 'Stick No Bills', sans-serif;
-    
+    padding: 20px;
+    border-radius: 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.24);
+    background-color: transparent; /* default background */
 }
+
+
 #analogClock{
     position:absolute;
     top: 50%;
@@ -269,4 +274,92 @@ a{
         bottom: 66%;
         left: 95.5%;
     }
+}
+
+#log-controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#log-controls button {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: rgba(41, 37, 37, 0.5);    
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#log-controls button:hover {
+    filter: brightness(0.85);
+}
+
+#log-list {
+    margin-top: 15px;
+    list-style: none;
+    padding-left: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#log-list li {
+    font-family: 'Josefin Sans', sans-serif;
+    margin-bottom: 6px;
+}
+
+
+#log-controls button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.day #log-list {
+    color: #333; /* dark text for light mode */
+}
+
+.night #log-list {
+    color: white; /* white text for night mode */
+}
+
+
+/* Clock In button styling */
+.clock-in {
+    /* background-color: green !important; */
+    color: white !important;
+}
+
+.clock-out {
+    background-color: red !important;
+    color: white !important;
+}
+
+.clock-active {
+    background-color: greenyellow !important;
+    color: black !important;
+}
+
+.log-controls button i {
+  margin-right: 6px; /* Space between icon and text */
+}
+
+#current-session-timer {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+
+.day #current-session-timer {
+    color: black;
+}
+
+.night #current-session-timer {
+    color: white;
 }
