@@ -1,365 +1,432 @@
 html, body {
-    width: 100%;
-    height: 100%;
-    background: #ccc;
-    padding: 0;
-    margin: 0;
-  }
-#bg{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.night{
-    background: linear-gradient(45deg,  rgb(64, 64, 121) 50%,  rgb(56, 56, 114) 100%);
 
-    background-color: rgb(64, 64, 121);
+#bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.day{
-    background: linear-gradient(45deg,  rgb(218, 218, 218) 50%,  rgb(235, 235, 235) 100%);
+
+.night {
+  background: linear-gradient(45deg, rgb(64, 64, 121) 50%, rgb(56, 56, 114) 100%);
+  background-color: rgb(64, 64, 121);
 }
-.containerDay{
-    background-color: #fff;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+.day {
+  background: linear-gradient(45deg, rgb(218, 218, 218) 50%, rgb(235, 235, 235) 100%);
 }
-.containerNight{
-    background-color: rgb(51, 51, 51, 0.5);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+.containerDay {
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-#clock-container{
-    position:relative;
-    border-radius: 10px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 70vw;
-    height: 80vh; 
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+
+.containerNight {
+  background-color: rgba(51, 51, 51, 0.5);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+#clock-container {
+  position: relative;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 70vw;
+  height: 80vh;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
 }
 
 #digitalClock {
-    font-size: 80px;
-    font-weight: 400;
-    text-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    color: #fff;
-    font-family: 'Stick No Bills', sans-serif;
-    padding: 20px;
-    border-radius: 10px 10px;
-    box-shadow: rgba(0, 0, 0, 0.24);
-    background-color: transparent; /* default background */
-}
-
-
-#analogClock{
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
-    width: 400px;
-    height: 400px;
-    background: linear-gradient(45deg,  rgb(255, 255, 255) 50%,  rgb(255, 255, 255) 100%);
-    border-radius: 50%;
-    border: 9px solid #000;
-    box-shadow: inset 0px 0px 10px 1px rgb(0 0 0 / 50%);
-}
-#analogClock::after{
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    background-color: #fff;
-    border:rgb(0, 0, 0)solid 3px;
-
-}
-.num{
-    position:absolute;
-    bottom: 50%;
-    left: 50%;
-    width: 190px;
-    margin: 0;
-    text-align: left;
-    transform-origin: right;
-    font-size: 30px;
-    font-weight: 400;
-    font-family: 'Poppins', sans-serif;
-}
-.numbers{
-    position: absolute;
-    bottom: 63%;
-    left: 97%;
-    transform: rotate(180deg);
-    transform-origin: center;
-}
-p{
-    width: min-content;
-    height: min-content;
-    transform-origin: center;
-    text-align: left;
-
-
-}
-#second-hand{
-    position: absolute;
-    left: 200px;
-    top: 20px;
-    width: 3px;
-    height: 180px;
-    background-color: rgb(255, 0, 0);
-    border-radius: 5px 5px;
-    transform-origin: bottom;
-    box-shadow: rgb(58, 58, 58, 0.35)  -3px 0px 10px
-
-}
-#minute-hand{
-    position: absolute;
-    left: 200px;
-    top: 20px;
-    width: 5px;
-    height: 180px;
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px 5px;
-    transform-origin: bottom;
-    box-shadow: rgba(58, 58, 58, 0.35) -3px 0px 10px
-
-}
-#hour-hand{
-    position: absolute;
-    left: 196.5px;
-    top: 100px;
-    width: 8px;
-    height: 100px;
-    background-color: rgb(0, 0, 0);
-    border-radius: 5px 5px;
-    transform-origin: bottom;
-    box-shadow: 0 0 10px 0 rgb(0 0 0 / 40%)
-
-}
-.change-type {
-    opacity: 0;
-    position: absolute;
-    
-  }
-.change-type ~ .change-btn::before {
-    content: "Digital";
-
-}
-.change-type:checked ~ .change-btn:before {
-    content: "Analog";
-}
-
-.change-type:checked ~ #digitalClock{
-    display: none;
-}
-.change-type:checked ~ #analogClock{
-    display: block;
-}
-.change-btn:hover{
-    filter: brightness(0.86);
-}
-.change-btn, .display-btn{
-    position: absolute;
-    top: 90%;
-    cursor: pointer;
-    display: inline-block;
-    color: rgb(255, 255, 255);
-    font-size: 20px;
-    width: max-content;
-    height: max-content;
-    font-weight: 500;
-    background-color: rgba(41, 37, 37, 0.5);
-    padding: 10px 15px;
-    border-radius: 15px 15px;
-    font-family: 'Josefin Sans', sans-serif;
-    margin-right: 20px ;
-    box-shadow: rgba(43, 43, 43, 0.4) 0px 2px 8px 0px;
-}
-
-.auto-mode, .day-mode, .night-mode{
-    background-color: rgba(41, 37, 37, 0.5);
-    margin-right: 20px;
-    border-radius: 15px 15px;
-    padding: 8px;
-    border: none;
-    font-size: 20px;
-    color: white;
-    font-family: 'Josefin Sans', sans-serif;
-    cursor: pointer;
-    color: transparent; 
-    transition: 0.3s;
-
-    text-shadow: rgb(255, 255, 255) 0 0 0 ;
-    box-shadow: rgba(43, 43, 43, 0.4) 0px 2px 8px 0px;
-}
-.change-mode{
     display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    position: absolute;
-    top:6%;
-    left:50%;
-    transition: 0.3s;
-    transform: translate(-50% ,-50%);
-}
-.day-mode{
-    padding: 5px;
-    font-size: 25px;
+  flex-direction: column;
+  align-items: center;
+  font-size: 80px;
+  font-weight: 400;
+  text-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  color: #fff;
+  font-family: 'Stick No Bills', sans-serif;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: transparent;
 }
 
-.night-mode:hover{
-    filter: brightness(0.7);
-}
-.auto-mode:hover{
-    filter: brightness(0.7);
-}
-.day-mode:hover{
-    filter: brightness(0.7);
+#analogClock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 400px;
+  height: 400px;
+  background: #fff;
+  border-radius: 50%;
+  border: 9px solid #000;
+  box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.5);
 }
 
-.github{
-    color:white;
-    font-family: 'Josefin Sans', sans-serif;
-    position:absolute;
-    top: 105%;
-    left:50%;
-    width: max-content;
-    transform: translate(-50%, -50%);
+#analogClock::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 3px solid #000;
 }
-a{
-    color: rgb(218, 124, 124)
+
+.num {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 190px;
+  text-align: left;
+  transform-origin: right;
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
 }
+
+.numbers {
+  position: absolute;
+  bottom: 63%;
+  left: 97%;
+  transform: rotate(180deg);
+  transform-origin: center;
+}
+
+p {
+  width: min-content;
+  height: min-content;
+  text-align: left;
+  transform-origin: center;
+}
+
+#second-hand, #minute-hand, #hour-hand {
+  position: absolute;
+  transform-origin: bottom;
+  border-radius: 5px;
+  box-shadow: rgba(58, 58, 58, 0.35) -3px 0px 10px;
+}
+
+#second-hand {
+  left: 200px;
+  top: 20px;
+  width: 3px;
+  height: 180px;
+  background-color: red;
+}
+
+#minute-hand {
+  left: 200px;
+  top: 20px;
+  width: 5px;
+  height: 180px;
+  background-color: black;
+}
+
+#hour-hand {
+  left: 196.5px;
+  top: 100px;
+  width: 8px;
+  height: 100px;
+  background-color: black;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.change-type {
+  opacity: 0;
+  position: absolute;
+}
+
+.change-type ~ .change-btn::before {
+  content: "Digital";
+}
+
+.change-type:checked ~ .change-btn::before {
+  content: "Analog";
+}
+
+.change-type:checked ~ #digitalClockBlock {
+  display: none;
+}
+
+.change-type:checked ~ #analogClock {
+  display: block;
+}
+
+.change-btn:hover {
+  filter: brightness(0.86);
+}
+
+.change-btn, .display-btn {
+  position: absolute;
+  top: 90%;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: rgba(41, 37, 37, 0.5);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-right: 20px;
+  box-shadow: rgba(43, 43, 43, 0.4) 0px 2px 8px 0px;
+}
+
+.auto-mode, .day-mode, .night-mode {
+  background-color: rgba(41, 37, 37, 0.5);
+  margin-right: 20px;
+  border-radius: 15px;
+  padding: 8px;
+  font-size: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  color: transparent;
+  text-shadow: white 0 0 0;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: rgba(43, 43, 43, 0.4) 0px 2px 8px 0px;
+}
+
+.auto-mode:hover, .day-mode:hover, .night-mode:hover {
+  filter: brightness(0.7);
+}
+
+.change-mode {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.3s;
+}
+
+.github {
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  position: absolute;
+  top: 105%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+}
+
+a {
+  color: rgb(218, 124, 124);
+}
+
 @media(max-width: 1024px) {
-    .change-mode{
-        top: 10%
-    }
-    #clock-container{
-        width: 90vw;
-        height: 60vh;
-    }
-    #analogClock{
-        width: 200px;
-        height: 200px;
-    }
-    #second-hand{
-        left: 100px;
-        top: 10px;
-        width: 5px;
-        height: 90px;
-    }
-    #minute-hand{
-        left: 100px;
-        top: 10px;
-        width: 5px;
-        height: 90px;
-    }
-    #hour-hand{
-        left: 100px;
-        top: 50px;
-        width: 8px;
-        height: 50px;
-    }
-    .num{
-        bottom: 50%;
-        left: 95%;
-        width: 93px;
-        font-size: 20px;
-    }
-    .numbers{
-        bottom: 66%;
-        left: 95.5%;
-    }
+  .change-mode {
+    top: 10%;
+  }
+  #clock-container {
+    width: 90vw;
+    height: 60vh;
+  }
+  #analogClock {
+    width: 200px;
+    height: 200px;
+  }
+  #second-hand, #minute-hand {
+    left: 100px;
+    top: 10px;
+    height: 90px;
+  }
+  #hour-hand {
+    left: 100px;
+    top: 50px;
+    height: 50px;
+  }
+  .num {
+    left: 95%;
+    width: 93px;
+    font-size: 20px;
+  }
+  .numbers {
+    bottom: 66%;
+    left: 95.5%;
+  }
 }
 
 #log-controls {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
 }
 
 #log-controls button {
-    padding: 10px 15px;
-    font-size: 16px;
-    font-family: 'Josefin Sans', sans-serif;
-    background-color: rgba(41, 37, 37, 0.5);    
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: rgba(41, 37, 37, 0.5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 #log-controls button:hover {
-    filter: brightness(0.85);
+  filter: brightness(0.85);
+}
+
+#log-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 #log-list {
-    margin-top: 15px;
-    list-style: none;
-    padding-left: 0;
-    max-height: 200px;
-    overflow-y: auto;
+  margin-top: 15px;
+  list-style: none;
+  padding-left: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 #log-list li {
-    font-family: 'Josefin Sans', sans-serif;
-    margin-bottom: 6px;
+  margin-bottom: 6px;
 }
 
-
-#log-controls button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-.day #log-list {
-    color: #333; /* dark text for light mode */
-}
-
-.night #log-list {
-    color: white; /* white text for night mode */
-}
-
-
-/* Clock In button styling */
-.clock-in {
-    /* background-color: green !important; */
-    color: white !important;
-}
-
-.clock-out {
-    background-color: red !important;
-    color: white !important;
-}
-
-.clock-active {
-    background-color: greenyellow !important;
-    color: black !important;
-}
-
-.log-controls button i {
+button i {
   margin-right: 6px; /* Space between icon and text */
 }
 
+
+.day #log-list {
+  color: #333;
+}
+
+.night #log-list {
+  color: white;
+}
+
+.clock-in {
+  color: white !important;
+}
+
+.clock-out {
+  background-color: red !important;
+  color: white !important;
+}
+
+.clock-active {
+  background-color: greenyellow !important;
+  color: black !important;
+}
+
 #current-session-timer {
-    font-family: 'Josefin Sans', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .day #current-session-timer {
-    color: black;
+  color: black;
 }
 
 .night #current-session-timer {
-    color: white;
+  color: white;
 }
+
+#tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.tab-btn {
+  padding: 8px 14px;
+  font-size: 16px;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: rgba(41, 37, 37, 0.5);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow-y: auto;
+  max-height: 60vh;
+  transition: opacity 0.3s ease;
+}
+
+.tab-content.active-tab {
+  display: block;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.day .tab-content {
+  background-color: #fff;
+  color: #333;
+}
+
+.night .tab-content {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+#history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#history-table th, #history-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#history-table th {
+  background-color: #444;
+  color: white;
+}
+
+.day #history-table th {
+  background-color: #eee;
+  color: #333;
+}
+
+#settings-tab {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+}
+

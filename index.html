@@ -16,56 +16,95 @@
         </head>
     <body id="bg">
         <div id="clock-container">
-            <div class="change-mode">
-                <!-- <input id="button" class="auto-mode" type="submit" onclick="autoModeStart()" value="Auto" title='Dark mode: 21:00 - 7:00 Light mode: 7:00 - 21:00'/> -->
-                <button id="auto-mode-btn" class="auto-mode" onclick="autoModeStart()" title="Dark mode: 21:00 - 7:00 Light mode: 7:00 - 21:00">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-                </button>
-
-                <input id="button" class="night-mode" type="submit" onclick="nightModeStart()" value='🌙' title='Dark mode'/>
-                <input id="button" class="day-mode" type="submit" onclick="dayModeStart()" value="🔅" title='Light mode'/>           
-            </div>
-            <input type="checkbox" class="change-type" id="change-type" />
-            <label for="change-type" class="change-btn"></label>
-            
-            <div id="digitalClock"></div>
-            
-            <div id="current-session-timer">
-            <!-- Session duration will appear here -->
+            <!-- Tab Buttons -->
+            <div id="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('main-tab')">Main</button>
+                <button class="tab-btn" onclick="switchTab('history-tab')">History</button>
+                <button class="tab-btn" onclick="switchTab('settings-tab')">Settings</button>
             </div>
 
-            <div id="log-controls">
-                <button id="clockInBtn" onclick="clockIn()"><i class="fas fa-clock"></i>Clock In</button>
-                <button id="clockOutBtn" onclick="clockOut()"><i class="fas fa-clock"></i>Clock Out</button>                
-            </div>
+            <!-- Tab Content: Main -->
+            <div id="main-tab" class="tab-content active-tab">
+                
+                
+                <input type="checkbox" class="change-type" id="change-type" />
+                <label for="change-type" class="change-btn"></label>
+                
+                <div id="digitalClockBlock">
+                    <div id="digitalClock"></div>
 
-            <ul id="log-list"></ul>
+                    <div id="current-session-timer">
+                    <!-- Session duration will appear here -->
+                    </div>
 
-            <div id="log-controls">
-                <button onclick="downloadLog()"><i class="fas fa-save"></i>Save</button>
-                <button onclick="clearLog()"><i class="fas fa-eraser"></i>Clear</button>
-            </div>
-            
+                    <div id="log-controls">
+                        <button id="clockInBtn" onclick="clockIn()"><i class="fas fa-clock"></i>Clock In</button>
+                        <button id="clockOutBtn" onclick="clockOut()"><i class="fas fa-clock"></i>Clock Out</button>                
+                    </div>
 
-            <div id="analogClock">
-                <div class="numbers">
-                    <div class="num" style='transform: rotate(-90deg)'><p style="transform: rotate(-90deg);">12</p></div>
-                    <div class="num" style='transform: rotate(-60deg)'><p style='transform: rotate(240deg)'>1</p></div>
-                    <div class="num" style='transform: rotate(-30deg)'><p style='transform: rotate(210deg)'>2</p></div>
-                    <div class="num"><p style='transform: rotate(180deg)'>3</p></div>
-                    <div class="num" style='transform: rotate(30deg)'><p style='transform: rotate(150deg)'>4</p></div>
-                    <div class="num" style='transform: rotate(60deg)'><p style='transform: rotate(120deg)'>5</p></div>
-                    <div class="num" style='transform: rotate(90deg)'><p style='transform: rotate(90deg)'>6</p></div>
-                    <div class="num" style='transform: rotate(120deg)'><p style='transform: rotate(60deg)'>7</p></div>
-                    <div class="num" style='transform: rotate(150deg)'><p style='transform: rotate(30deg)'>8</p></div>
-                    <div class="num" style='transform: rotate(180deg)'><p>9</p></div>
-                    <div class="num" style='transform: rotate(210deg)'><p style='transform: rotate(330deg)'>10</p></div>
-                    <div class="num" style='transform: rotate(240deg)'><p style='transform: rotate(300deg)'>11</p></div>
+                    <ul id="log-list"></ul>
+
+                   
                 </div>
-                <div id="hour-hand"></div>
-                <div id="minute-hand"></div>
-                <div id="second-hand"></div>
+                
+                <div id="analogClock">
+                    <div class="numbers">
+                        <div class="num" style='transform: rotate(-90deg)'><p style="transform: rotate(-90deg);">12</p></div>
+                        <div class="num" style='transform: rotate(-60deg)'><p style='transform: rotate(240deg)'>1</p></div>
+                        <div class="num" style='transform: rotate(-30deg)'><p style='transform: rotate(210deg)'>2</p></div>
+                        <div class="num"><p style='transform: rotate(180deg)'>3</p></div>
+                        <div class="num" style='transform: rotate(30deg)'><p style='transform: rotate(150deg)'>4</p></div>
+                        <div class="num" style='transform: rotate(60deg)'><p style='transform: rotate(120deg)'>5</p></div>
+                        <div class="num" style='transform: rotate(90deg)'><p style='transform: rotate(90deg)'>6</p></div>
+                        <div class="num" style='transform: rotate(120deg)'><p style='transform: rotate(60deg)'>7</p></div>
+                        <div class="num" style='transform: rotate(150deg)'><p style='transform: rotate(30deg)'>8</p></div>
+                        <div class="num" style='transform: rotate(180deg)'><p>9</p></div>
+                        <div class="num" style='transform: rotate(210deg)'><p style='transform: rotate(330deg)'>10</p></div>
+                        <div class="num" style='transform: rotate(240deg)'><p style='transform: rotate(300deg)'>11</p></div>
+                    </div>
+                    <div id="hour-hand"></div>
+                    <div id="minute-hand"></div>
+                    <div id="second-hand"></div>
+                </div>
             </div>
+
+            <!-- Tab Content: History -->
+            <div id="history-tab" class="tab-content">
+                <table id="history-table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Duration</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Filled by JS -->
+                    </tbody>
+                </table>
+
+                 <div id="log-controls">
+                        <button onclick="downloadLog()"><i class="fas fa-save"></i>Save</button>
+                        <button onclick="clearLog()"><i class="fas fa-eraser"></i>Clear</button>
+                </div>
+            </div>
+
+            <!-- Tab Content: Settings -->
+            <div id="settings-tab" class="tab-content">
+                <h3>Theme</h3>
+                    <button class="day-mode" onclick="dayModeStart()">🔅 Day</button>
+                    <button class="night-mode" onclick="nightModeStart()">🌙 Night</button>
+                    <button id="auto-mode-btn" class="auto-mode" onclick="autoModeStart()" title="Dark mode: 21:00 - 7:00 Light mode: 7:00 - 21:00">
+                        <i class="fa-solid fa-circle-half-stroke"></i> Auto
+                    </button>                
+                </div>
+            <!-- </div> -->
+
+
+
+            
+           
             <!-- <div class="github">Made with ❤ by <a href='https://github.com/mkh1n'>@mkh1n</a></div> -->
         </div>
         <script src="clock.js">''</script>

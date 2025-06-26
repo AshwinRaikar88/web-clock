@@ -82,9 +82,14 @@ let log = JSON.parse(localStorage.getItem("clockLog")) || [];
 let clockedInAt = null;
 
 window.onload = () => {
+    const savedTab = localStorage.getItem("activeTab") || "main-tab";
+    switchTab(savedTab);
+
     updateLogUI();
+    updateHistoryTable();
     updateButtons();
 };
+
 
 function formatTimeString(date) {
     let hours = date.getHours();
@@ -232,6 +237,31 @@ function updateLogUI() {
     });
 }
 
+function updateHistoryTable() {
+    const tbody = document.querySelector("#history-table tbody");
+    tbody.innerHTML = "";
+
+    log.forEach(entry => {
+        const row = document.createElement("tr");
+
+        const date = document.createElement("td");
+        date.textContent = entry.date;
+
+        const start = document.createElement("td");
+        start.textContent = entry.start;
+
+        const end = document.createElement("td");
+        end.textContent = entry.end;
+
+        const duration = document.createElement("td");
+        duration.textContent = entry.duration;
+
+        row.append(date, start, end, duration);
+        tbody.appendChild(row);
+    });
+}
+
+
 
 function downloadLog() {
     const grouped = {};
@@ -265,6 +295,7 @@ function clearLog() {
     clockedInAt = null;
     localStorage.removeItem("clockLog");
     updateLogUI();
+    updateHistoryTable();
     updateButtons();
 }
 
@@ -279,4 +310,26 @@ function formatDuration(ms) {
     const pad = (n) => (n < 10 ? "0" + n : n);
 
     return `${hours}hr:${pad(minutes)}min:${pad(seconds)}s`;
+}
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active-tab');
+  });
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  document.getElementById(tabId).classList.add('active-tab');
+  const clickedBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn =>
+    btn.textContent.toLowerCase().includes(tabId.split('-')[0])
+  );
+  if (clickedBtn) clickedBtn.classList.add('active');
+
+  localStorage.setItem("activeTab", tabId);
+
+  // ✅ Refresh the history table when switching to the History tab
+  if (tabId === "history-tab") {
+    updateHistoryTable();
+  }
 }
