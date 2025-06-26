@@ -52,7 +52,7 @@ html, body {
 }
 
 #digitalClock {
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 80px;
@@ -64,6 +64,25 @@ html, body {
   border-radius: 10px;
   background-color: transparent;
 }
+
+.day #digitalClock {
+    color: #333;
+}
+
+#sessionClock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  font-size: 50px;
+  font-weight: 400;
+  text-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  color: #fff;
+  font-family: 'Stick No Bills', sans-serif;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
 
 #analogClock {
   position: absolute;
@@ -101,6 +120,10 @@ html, body {
   transform-origin: right;
   font-size: 30px;
   font-family: 'Poppins', sans-serif;
+}
+
+.night .num {
+  color: black;
 }
 
 .numbers {
@@ -429,4 +452,3 @@ button i {
   font-size: 18px;
   text-align: left;
 }
-
